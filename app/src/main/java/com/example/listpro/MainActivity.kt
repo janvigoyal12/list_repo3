@@ -1,6 +1,8 @@
 package com.example.listpro
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,10 +13,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        // Initialize the ListView
+        val listView: ListView = findViewById(R.id.listview)
+
+        val items = arrayOf("Apple", "Banana", "Cherry")
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+
+
+        listView.adapter = adapter
+
         }
     }
-}
